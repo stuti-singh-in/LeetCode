@@ -1,1 +1,1 @@
-# leetcodewarehouse.github.io
+# StutiCodes.github.io
