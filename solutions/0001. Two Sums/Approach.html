@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Approach: 0001 - Two Sums </title>
+    </head>
+
+<body>
+    <h1>Approach: 0001 - Two Sums</h1>
+    <h2>Problem:</h2>
+    <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+    <p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+    <p><strong>Example:</strong></p>
+    <pre>
+        Given nums = [2, 7, 11, 15], target = 9,
+        Because nums[0] + nums[1] = 2 + 7 = 9,
+        return [0, 1].
+    </pre>
+    <h2>Approach:</h2>
+    <p>Brute Force</p>
+    <p>Time complexity: O(n^2)</p>
+    <p>Space complexity: O(1)</p>
+    <p>Hash Table</p>
+    <p>Time complexity: O(n)</p>
+    <p>Space complexity: O(n)</p>
+    <h2>Code:</h2>
+    <p>Brute Force</p>
+    <pre>
+        <code>
+            class Solution {
+                public int[] twoSum(int[] nums, int target) {
+                    for (int i = 0; i < nums.length; i++) {
+                        for (int j = i + 1; j < nums.length; j++) {
+                            if (nums[j] == target - nums[i]) {
+                                return new int[] { i, j };
+                            }
+                        }
+                    }
+                    throw new IllegalArgumentException("No two sum solution");
+                }
+            }
+        </code>
+    </pre>
+    <p>Hash Table</p>
+    <pre>
+        <code>
+            class Solution {
+                public int[] twoSum(int[] nums, int target) {
+                    Map<Integer, Integer> map = new HashMap<>();
+                    for (int i = 0; i < nums.length; i++) {
+                        map.put(nums[i], i);
+                    }
+                    for (int i = 0; i < nums.length; i++) {
+                        int complement = target - nums[i];
+                        if (map.containsKey(complement) && map.get(complement) != i) {
+                            return new int[] { i, map.get(complement) };
+</body>
+</html>
