@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Approach: 0001 - Two Sums </title>
+        <title>Approach: 0001 - Two Sums  - CPP Solution</title>
     </head>
 
 <body>
@@ -17,43 +17,33 @@
         Because nums[0] + nums[1] = 2 + 7 = 9,
         return [0, 1].
     </pre>
-    <h2>Approach:</h2>
-    <p>Brute Force</p>
-    <p>Time complexity: O(n^2)</p>
-    <p>Space complexity: O(1)</p>
-    <p>Hash Table</p>
+    <h2>Approach: C++</h2>
+    <p>Use a map to store the value and index of each element in the array. 
+        Then, for each element, check if the map contains the value that is needed to add up to the target. 
+        If it does, return the indices of the two elements.</p>
     <p>Time complexity: O(n)</p>
     <p>Space complexity: O(n)</p>
-    <h2>Code:</h2>
-    <p>Brute Force</p>
+    <p>Runtime: 8 ms, faster than 99.96% of C++ online submissions for Two Sum.</p>
+    <p>Memory Usage: 10.1 MB, less than 100.00% of C++ online submissions for Two Sum.</p>
     <pre>
         <code>
             class Solution {
-                public int[] twoSum(int[] nums, int target) {
-                    for (int i = 0; i < nums.length; i++) {
-                        for (int j = i + 1; j < nums.length; j++) {
-                            if (nums[j] == target - nums[i]) {
-                                return new int[] { i, j };
-                            }
-                        }
-                    }
-                    throw new IllegalArgumentException("No two sum solution");
-                }
-            }
-        </code>
-    </pre>
-    <p>Hash Table</p>
-    <pre>
-        <code>
-            class Solution {
-                public int[] twoSum(int[] nums, int target) {
-                    Map<Integer, Integer> map = new HashMap<>();
-                    for (int i = 0; i < nums.length; i++) {
-                        map.put(nums[i], i);
-                    }
-                    for (int i = 0; i < nums.length; i++) {
+            public:
+                vector<int> twoSum(vector<int>& nums, int target) {
+                    unordered_map<int, int> map;
+                    vector<int> result;
+                    for (int i = 0; i < nums.size(); i++) {
                         int complement = target - nums[i];
-                        if (map.containsKey(complement) && map.get(complement) != i) {
-                            return new int[] { i, map.get(complement) };
+                        if (map.find(complement) != map.end()) {
+                            result.push_back(map[complement]);
+                            result.push_back(i);
+                            return result;
+                        }
+                        map[nums[i]] = i;
+                    }
+                    return result;
+                }
+            };
+        </code>
 </body>
 </html>
